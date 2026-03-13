@@ -321,15 +321,11 @@ const handleBind = async (templateName: string, bindingName: string) => {
     const bindUrl = buildApiUrl('/bind')
 
     // Create the binding request
-    // Use consumerId if available (CLI flow), otherwise use sessionId as cluster identity
-    // Read from Vue Router's route.query instead of window.location
+    // Use consumerId if available (CLI flow), otherwise use sessionId as cluster identity.
+    // In the UI-only flow (no CLI), there is no consumer_id or session_id in the URL.
+    // We send an empty identity and let the backend derive it from the authenticated session.
     const sessionIdFromRoute = route.query.session_id as string || ''
     const clusterIdentity = consumerId.value || sessionIdFromRoute
-
-    if (!clusterIdentity) {
-      showAlertModal('Missing cluster identity. Please ensure you have authenticated properly.', 'Binding Failed', 'error')
-      return
-    }
 
     const bindingRequest: BindableResourcesRequest = {
       metadata: {
