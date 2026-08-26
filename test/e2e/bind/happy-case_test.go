@@ -92,7 +92,7 @@ func TestNamespacedScoped(t *testing.T) {
 //	SETUP PHASE
 //	===========
 //	┌──────────────────────────────────────────────────────────────────────────┐
-//	│ 1. Create provider workspace (KCP)                                       │
+//	│ 1. Create provider workspace (kcp)                                       │
 //	│    - Install kube-bind CRDs                                              │
 //	│    - Start backend server (HTTP API for binding)                         │
 //	│    - Bootstrap example CRDs (Cowboys/Sheriffs) via examples.Bootstrap()  │

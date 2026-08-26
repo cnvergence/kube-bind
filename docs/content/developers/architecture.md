@@ -209,7 +209,7 @@ The end-to-end test validates the complete binding and synchronization flow:
 
 ### Setup Phase
 
-1. **Create provider workspace (KCP)**
+1. **Create provider workspace (kcp)**
    - Install kube-bind CRDs
    - Start backend server (HTTP API for binding)
    - Bootstrap example CRDs (Cowboys/Sheriffs)
