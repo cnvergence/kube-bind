@@ -290,13 +290,13 @@ run-kcp: install-kcp
 	$(KCP) start --bind-address=127.0.0.1
 
 .PHONY: run-kcp-infra
-run-kcp-infra: install-kcp $(DEX_BINARY) ## Run KCP infrastructure for e2e tests (blocking)
+run-kcp-infra: install-kcp $(DEX_BINARY) ## Run kcp infrastructure for e2e tests (blocking)
 	mkdir -p .kcp
 	$(MAKE) run-dex 2>&1 & DEX_PID=$$!; \
 	$(MAKE) run-kcp &>.kcp/kcp.log & KCP_PID=$$!; \
 	trap 'kill -TERM $$DEX_PID $$KCP_PID; rm -rf .kcp' TERM INT EXIT && \
 	echo "Waiting for kcp to be ready (check .kcp/kcp.log)." && while ! KUBECONFIG=.kcp/admin.kubeconfig kubectl get --raw /readyz &>/dev/null; do sleep 1; echo -n "."; done && echo && \
-	echo "KCP is ready. Press Ctrl+C to stop." && \
+	echo "kcp is ready. Press Ctrl+C to stop." && \
 	wait $$KCP_PID
 
 .PHONY: test-e2e-only
@@ -306,7 +306,7 @@ endif
 test-e2e-only: TEST_ARGS ?=
 test-e2e-only: WORK_DIR ?= .
 test-e2e-only: WHAT ?= ./test/e2e...
-test-e2e-only: build ## Run e2e tests against existing KCP infrastructure
+test-e2e-only: build ## Run e2e tests against existing kcp infrastructure
 	KUBECONFIG=$$PWD/.kcp/admin.kubeconfig GOOS=$(OS) GOARCH=$(ARCH) $(GO_TEST) -race -v -count $(COUNT) $(E2E_PARALLELISM_FLAG) $(WHAT) $(TEST_ARGS)
 
 .PHONY: test-e2e

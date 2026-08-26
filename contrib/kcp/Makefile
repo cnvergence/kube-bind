@@ -28,5 +28,5 @@ all: build
 install-apigen:
 	@GO_MODULE=true $(ROOT_DIR)/hack/uget.sh github.com/kcp-dev/sdk/cmd/apigen apigen $(KCP_APIGEN_VERSION)
 
-codegen: ## Generate KCP API resources from CRDs
+codegen: ## Generate kcp API resources from CRDs
 	./hack/update-kcp-codegen.sh

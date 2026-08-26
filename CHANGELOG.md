@@ -43,5 +43,5 @@ Version v0.5.0 includes significant architectural improvements to the API struct
 ### Backend Architecture Improvements
 
 - **MultiCluster Runtime Integration**: The backend now leverages `sigs.k8s.io/multicluster-runtime` for enhanced cluster management capabilities
-- **Provider Support**: Built-in support for multiple backend providers including KCP through `github.com/kcp-dev/multicluster-provider`
+- **Provider Support**: Built-in support for multiple backend providers including kcp through `github.com/kcp-dev/multicluster-provider`
 - **Enhanced Cluster Operations**: Improved cluster-aware resource management with dedicated manager architecture for handling multi-cluster scenarios
